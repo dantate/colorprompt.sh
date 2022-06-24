@@ -1,4 +1,15 @@
 # no hashbang since this is meant to be read inline
+# Custom Colorization script using tput method.  Intended only for xterm-256color compatible terminals.
+#
+# Usage: "source colorprompt.sh [color]" or "source colorprompt.sh [prompt color code] [highlight color code]"
+#
+# This was built for personal use but i'm putting it out on Github.  If anyone improves upon it, i'd love to see
+# the resulting code.   This was done in one morning and it shows.
+# 2022 Daniel Tate https://github.com/dantate/colorprompt.sh
+# revision 1.2 | 24 June 2022
+
+LTGRAY=247
+DKGRAY=243
 
 re='^[0-9]+$'
 if [[ $1 =~ $re ]]
@@ -6,7 +17,7 @@ if [[ $1 =~ $re ]]
 # Set prompt CUSTOM
     if test -n ${1} && test -z ${2}
       then
-        echo "error: Must have highlight color parameter if standard color is set"
+        echo "error: Must have highlight color parameter if prompt color is manually set"
       else
 
 export PS1="\[$(tput setaf $1) [\
@@ -27,63 +38,103 @@ case $1 in
     blue)
 
 #Set prompt BLUE
-export PS1="\[$(tput setaf 247) [\
+export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput setaf 33)\u\
-\[$(tput setaf 247)\]] \h:\w\
+\[$(tput setaf $LTGRAY)\]] \h:\w\
+\[$(tput setaf 33)\]\\$\
+\[$(tput sgr0)\] "
+;;
+
+  darkblue)
+#Set prompt DARKBLUE
+export PS1="\[$(tput setaf $DKGRAY) [\
+\[$(tput setaf 33)\u\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
 \[$(tput setaf 33)\]\\$\
 \[$(tput sgr0)\] "
 ;;
 
     azure)
-# Set prompt AZURE on DARK GREY
-export PS1="\[$(tput setaf 026) [\
+# Set prompt AZURE on LIGHT GREY
+export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput setaf 33)\u\
-\[$(tput setaf 242)\]] \h:\w\
+\[$(tput setaf $LTGRAY)\]] \h:\w\
 \[$(tput setaf 33)\]\\$\
 \[$(tput sgr0)\] "
 ;;
 
     darkazure)
 # Set prompt AZURE on DARK GREY
-export PS1="\[$(tput setaf 026) [\
+export PS1="\[$(tput setaf $DKGRAY) [\
 \[$(tput setaf 031)\u\
-\[$(tput setaf 242)\]] \h:\w\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
 \[$(tput setaf 031)\]\\$\
 \[$(tput sgr0)\] "
 ;;
     cyan)
-
-# Set prompt GREEN
-export PS1="\[$(tput setaf 243) [\
+# Set y7yprompt GREEN
+export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput setaf 123)\u\
-\[$(tput setaf 243)\]] \h:\w\
+\[$(tput setaf $LTGRAY)\]] \h:\w\
+\[$(tput setaf 123)\]\\$\
+\[$(tput sgr0)\] "
+;;
+    darkcyan)
+# Set prompt DK CYAN
+export PS1="\[$(tput setaf $DKGRAY) [\
+\[$(tput setaf 123)\u\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
 \[$(tput setaf 123)\]\\$\
 \[$(tput sgr0)\] "
 ;;
     green)
 # Set prompt GREEN
-export PS1="\[$(tput setaf 243) [\
+export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput setaf 28)\u\
-\[$(tput setaf 243)\]] \h:\w\
+\[$(tput setaf $LTGRAY)\]] \h:\w\
+\[$(tput setaf 28)\]\\$\
+\[$(tput sgr0)\] "
+;;
+    darkgreen)
+# Set prompt GREEN
+export PS1="\[$(tput setaf $DKGRAY) [\
+\[$(tput setaf 28)\u\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
 \[$(tput setaf 28)\]\\$\
 \[$(tput sgr0)\] "
 ;;
     red)
 # Set prompt RED
-export PS1="\[$(tput setaf 243) [\
+export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput setaf 124)\u\
-\[$(tput setaf 243)\]] \h:\w\
+\[$(tput setaf $LTGRAY)\]] \h:\w\
 \[$(tput setaf 124)\]\\$\
 \[$(tput sgr0)\] "
 ;;
 
+    darkred)
+# Set prompt RED
+export PS1="\[$(tput setaf $DKGRAY) [\
+\[$(tput setaf 124)\u\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
+\[$(tput setaf 124)\]\\$\
+\[$(tput sgr0)\] "
+;;
 
+    gray|grey)
+# Set prompt RED
+export PS1="\[$(tput setaf $DKGRAY) [\
+\[$(tput setaf $LTGRAY)\u\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
+\[$(tput setaf $LTGRAY)\]\\$\
+\[$(tput sgr0)\] "
+;;
     help)
 echo    usage:
-echo    "source colorprompt.sh color|custom [prompt color] [highlight color]"
+echo    "source colorprompt.sh [prompt color] [highlight color]"
 echo    i.e.:
 echo    source colorprompt.sh red
-echo    source colorprompt.sh custom 124 243
+echo    source colorprompt.sh 124 243
 ;;
 
 esac
