@@ -6,7 +6,7 @@
 # This was built for personal use but i'm putting it out on Github.  If anyone improves upon it, i'd love to see
 # the resulting code.   This was done in one morning and it shows.
 # 2022 Daniel Tate https://github.com/dantate/colorprompt.sh
-# revision 1.2 | 24 June 2022
+# revision 1.0.3 | 24 June 2022
 
 LTGRAY=247
 DKGRAY=243
@@ -72,7 +72,7 @@ export PS1="\[$(tput setaf $DKGRAY) [\
 \[$(tput sgr0)\] "
 ;;
     cyan)
-# Set y7yprompt GREEN
+# Set prompt CYAN on LT GRAY
 export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput setaf 123)\u\
 \[$(tput setaf $LTGRAY)\]] \h:\w\
@@ -96,7 +96,7 @@ export PS1="\[$(tput setaf $LTGRAY) [\
 \[$(tput sgr0)\] "
 ;;
     darkgreen)
-# Set prompt GREEN
+# Set prompt DARKGREEN
 export PS1="\[$(tput setaf $DKGRAY) [\
 \[$(tput setaf 28)\u\
 \[$(tput setaf $DKGRAY)\]] \h:\w\
@@ -113,7 +113,7 @@ export PS1="\[$(tput setaf $LTGRAY) [\
 ;;
 
     darkred)
-# Set prompt RED
+# Set prompt DARKRED
 export PS1="\[$(tput setaf $DKGRAY) [\
 \[$(tput setaf 124)\u\
 \[$(tput setaf $DKGRAY)\]] \h:\w\
@@ -122,13 +122,31 @@ export PS1="\[$(tput setaf $DKGRAY) [\
 ;;
 
     gray|grey)
-# Set prompt RED
+# Set prompt GREY
 export PS1="\[$(tput setaf $DKGRAY) [\
 \[$(tput setaf $LTGRAY)\u\
 \[$(tput setaf $DKGRAY)\]] \h:\w\
 \[$(tput setaf $LTGRAY)\]\\$\
 \[$(tput sgr0)\] "
 ;;
+
+    orange)
+# Set prompt orange
+export PS1="\[$(tput setaf $LTGRAY) [\
+\[$(tput setaf 214)\u\
+\[$(tput setaf $LTGRAY)\]] \h:\w\
+\[$(tput setaf 214)\]\\$\
+\[$(tput sgr0)\] "
+;;
+    darkorange)
+# Set prompt darkorange
+export PS1="\[$(tput setaf $DKGRAY) [\
+\[$(tput setaf 214)\u\
+\[$(tput setaf $DKGRAY)\]] \h:\w\
+\[$(tput setaf 214)\]\\$\
+\[$(tput sgr0)\] "
+;;
+
     help)
 echo    usage:
 echo    "source colorprompt.sh [prompt color] [highlight color]"
