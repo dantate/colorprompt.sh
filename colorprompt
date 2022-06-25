@@ -1,4 +1,4 @@
-# v2.0 (c) 2022 June Daniel Tate
+# v2.1 (c) 2022 June Daniel Tate
 # Meant for personal use but if you want to use it, go for it.  I make no promises.
 # The wrong thing can sometimes make the cursor print the raw codes.  You've been warned.
 #
@@ -11,13 +11,14 @@
 
 HILIGHT=${1}
 LTGRAY=247
-DKGRAY=243
+GRAY=244
+DKGRAY=240
 LOLIGHT=$LTGRAY
 
 function colorize ()
 {
-export PS1="\[$(tput setaf $LOLIGHT) [\
-\[$(tput setaf $1)\u\
+export PS1="\[$(tput setaf $LOLIGHT)\] [\
+\[$(tput setaf $1)\]\u\
 \[$(tput setaf $LOLIGHT)\]] \h:\w\
 \[$(tput setaf $1)\]\\$\
 \[$(tput sgr0)\] "
@@ -47,6 +48,11 @@ if [[ $1 =~ $re ]]
       ;;
     azure)
       HILIGHT=33
+      LOLIGHT=$GRAY
+      ;;
+    lightazure)
+      HILIGHT=33
+      LOLIGHT=$LTGRAY
       ;;
     darkazure)
       HILIGHT=33
@@ -54,44 +60,86 @@ if [[ $1 =~ $re ]]
       ;;
     blue)
       HILIGHT=031
+      LOLIGHT=$GRAY
+      ;;
+    lightblue)
+      HILIGHT=031
+      LOLIGHT=$LTGRAY
       ;;
     darkblue)
       HILIGHT=031
       LOLIGHT=$DKGRAY
       ;;
+    lightcyan)
+      HILIGHT=123
+      LOLIGHT=$LTGRAY
+      ;;
     cyan)
       HILIGHT=123
+      LOLIGHT=$GRAY
       ;;
     darkcyan)
       HILIGHT=123
       LOLIGHT=$DKGRAY
       ;;
+    lightgreen)
+      HILIGHT=28
+      LOLIGHT=$LTGRAY
+      ;;
     green)
       HILIGHT=28
+      LOLIGHT=$GRAY
       ;;
     darkgreen)
       HILIGHT=28
       LOLIGHT=$DKGRAY
       ;;
+    lightred)
+      HILIGHT=124
+      LOLIGHT=$LTGRAY
+      ;;
     red)
       HILIGHT=124
+      LOLIGHT=$GRAY
       ;;
     darkred)
       HILIGHT=124
       LOLIGHT=$DKGRAY
       ;;
+    lightorange)
+      HILIGHT=202
+      LOLIGHT=$LTGRAY
+      ;;
     orange)
-      HILIGHT=214
+      HILIGHT=202
+      LOLIGHT=$GRAY
       ;;
     darkorange)
-      HILIGHT=214
+      HILIGHT=202
+      LOLIGHT=$DKGRAY
+      ;;
+    lightpurple)
+      HILIGHT=162
+      LOLIGHT=$LTGRAY
+      ;;
+    darkpurple)
+      HILIGHT=162
       LOLIGHT=$DKGRAY
       ;;
     purple)
       HILIGHT=162
+      LOLIGHT=$GRAY
+      ;;
+    white)
+      HILIGHT=15
+      ;;
+    darkwhite)
+      HILIGHT=15
+      LOLIGHT=$DKGRAY
       ;;
 
     *)
+      echo "unknown.  falling back to safe."
      HILIGHT=256
 
       ;;

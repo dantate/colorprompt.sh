@@ -10,7 +10,7 @@
 
 # 2022 Daniel Tate https://github.com/dantate/colorprompt.sh
 # A color picker can be found at https://robotmoon.com/bash-prompt-generator/ (unaffiliated)
-# revision 1.0.4 | 24 June 2022
+# revision 1.0.5 | 24 June 2022
 
 LTGRAY=247
 DKGRAY=243
@@ -86,8 +86,8 @@ export PS1="\[$(tput setaf $LTGRAY) [\
 
     darkcyan)
 # Set prompt DK CYAN
-export PS1="\[$(tput setaf $DKGRAY) [\
-\[$(tput setaf 123)\u\
+export PS1="\[$(tput setaf $DKGRAY)\] [\
+\[$(tput setaf 123)\]\u\
 \[$(tput setaf $DKGRAY)\]] \h:\w\
 \[$(tput setaf 123)\]\\$\
 \[$(tput sgr0)\] "
