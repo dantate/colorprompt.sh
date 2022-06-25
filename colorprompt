@@ -1,0 +1,104 @@
+# v2.0 (c) 2022 June Daniel Tate
+# Meant for personal use but if you want to use it, go for it.  I make no promises.
+# The wrong thing can sometimes make the cursor print the raw codes.  You've been warned.
+#
+# uses the tput method to set the colors.  Meant exclusively or xterm-256color capable terminals.
+#
+# usage: copy to a location in your $PATH then issue:
+# "source colorprompt [color]" or
+# "source colorprompt [colorcode]"
+
+
+HILIGHT=${1}
+LTGRAY=247
+DKGRAY=243
+LOLIGHT=$LTGRAY
+
+function colorize ()
+{
+export PS1="\[$(tput setaf $LOLIGHT) [\
+\[$(tput setaf $1)\u\
+\[$(tput setaf $LOLIGHT)\]] \h:\w\
+\[$(tput setaf $1)\]\\$\
+\[$(tput sgr0)\] "
+}
+
+re='^[0-9]+$'
+if [[ $1 =~ $re ]]
+  then
+    colorize $HILIGHT
+  else
+    case $1 in
+    ansired)
+      HILIGHT=9
+      ;;
+    ansiblue)
+      HILIGHT=4
+      ;;
+    ansigreen)
+      HILIGHT=10
+      ;;
+    grey|gray)
+      HILIGHT=$DKGRAY
+      ;;
+    darkgrey)
+      HILIGHT=$LTGRAY
+      LOLIGHT=$DKGRAY
+      ;;
+    azure)
+      HILIGHT=33
+      ;;
+    darkazure)
+      HILIGHT=33
+      LOLIGHT=$DKGRAY
+      ;;
+    blue)
+      HILIGHT=031
+      ;;
+    darkblue)
+      HILIGHT=031
+      LOLIGHT=$DKGRAY
+      ;;
+    cyan)
+      HILIGHT=123
+      ;;
+    darkcyan)
+      HILIGHT=123
+      LOLIGHT=$DKGRAY
+      ;;
+    green)
+      HILIGHT=28
+      ;;
+    darkgreen)
+      HILIGHT=28
+      LOLIGHT=$DKGRAY
+      ;;
+    red)
+      HILIGHT=124
+      ;;
+    darkred)
+      HILIGHT=124
+      LOLIGHT=$DKGRAY
+      ;;
+    orange)
+      HILIGHT=214
+      ;;
+    darkorange)
+      HILIGHT=214
+      LOLIGHT=$DKGRAY
+      ;;
+    purple)
+      HILIGHT=162
+      ;;
+
+    *)
+     HILIGHT=256
+
+      ;;
+
+    esac
+    colorize $HILIGHT
+fi
+
+
+
