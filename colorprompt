@@ -1,5 +1,5 @@
 
-# v2.2 (c) 2022 June -
+# v2.3 (c) 2022 July -
 # Daniel Tate
 # Meant for personal use but if you want to use it, go for it.  I make no promises.
 # The wrong thing can sometimes make the cursor print the raw codes.  You've been warned.
@@ -10,16 +10,27 @@
 # "source colorprompt [color]" or
 # "source colorprompt [colorcode]"
 
-
+LASTRESULT=$?
 HILIGHT=${1}
 LTGRAY=247
 GRAY=244
 DKGRAY=240
 LOLIGHT=$LTGRAY
+function get_last_status (LASTRESULT)
+{
+  if [ $LASTRESULT -eq 0 ]
+  then
+  INDICATOR="$(tput setaf 124) ⬤"
+  echo $INDICATOR
+  else
+  INDICATOR="$(tput setaf 10) ⬤"
+  echo $INDICATOR
+  fi
+}
 
 function colorize ()
 {
-export PS1="\[$(tput setaf $LOLIGHT)\] [\
+export PS1=" \[$(tput setaf $LOLIGHT)\][\
 \[$(tput setaf $1)\]\u\
 \[$(tput setaf $LOLIGHT)\]] \h:\w\
 \[$(tput setaf $1)\]\\$\
@@ -163,6 +174,9 @@ if [[ $1 =~ $re ]]
 
     esac
     colorize $HILIGHT
+    # Disable this line to disable the last run status indicator.
+    PS1='$(if [ $? == 0 ] ; then echo $(tput setaf $LOLIGHT)⬤; else echo $(tput setaf $HILIGHT)⬤; fi)\e[00m'"$PS1"
+    export PS1
 fi
 
 
