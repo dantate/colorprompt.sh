@@ -16,17 +16,6 @@ LTGRAY=247
 GRAY=244
 DKGRAY=240
 LOLIGHT=$LTGRAY
-function get_last_status (LASTRESULT)
-{
-  if [ $LASTRESULT -eq 0 ]
-  then
-  INDICATOR="$(tput setaf 124) ⬤"
-  echo $INDICATOR
-  else
-  INDICATOR="$(tput setaf 10) ⬤"
-  echo $INDICATOR
-  fi
-}
 
 function colorize ()
 {
