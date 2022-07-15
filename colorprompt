@@ -164,7 +164,7 @@ if [[ $1 =~ $re ]]
     esac
     colorize $HILIGHT
     # Disable this line to disable the last run status indicator.
-    PS1='$(if [ $? == 0 ] ; then echo $(tput setaf $LOLIGHT)⬤; else echo $(tput setaf $HILIGHT)⬤; fi)\e[00m'"$PS1"
+    PS1='$(if [ $? == 0 ] ; then echo $(tput setaf $LOLIGHT)⬤; else echo $(tput setaf 124)⬤; fi)\e[00m'"$PS1"
     export PS1
 fi
 
